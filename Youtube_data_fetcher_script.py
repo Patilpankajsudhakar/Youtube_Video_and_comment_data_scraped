@@ -150,8 +150,6 @@ def extract_comments(driver, video_url):
             time.sleep(SCROLL_PAUSE_TIME)
 
             try:
-                # comment_id = WebDriverWait(driver, delay).until(
-                #         EC.presence_of_all_elements_located((By.XPATH, 'id')))
                 all_comment_elements = WebDriverWait(driver, delay).until(
                     EC.presence_of_all_elements_located((By.XPATH, '//*[@id="comment"]'))
                 )
@@ -165,7 +163,6 @@ def extract_comments(driver, video_url):
                 all_like_count = WebDriverWait(driver, delay).until(
                             EC.presence_of_all_elements_located((By.XPATH, '//*[@id="vote-count-middle"]')))
                 try:
-                    # we'll try to get only last 20 elements, because youtube loads 20 comments per scroll
                     new_comment_elements = all_comment_elements[:100]
                     new_comments = all_comments[:100]
                     new_usernames = all_usernames[:100]
@@ -276,6 +273,7 @@ if __name__ == "__main__":
     # Replace with the actual YouTube channel URL
     channel_url = 'https://www.youtube.com/@channelhandle/playlists'
     main(channel_url)
-
+    
+    driver.close()
     # Close the Selenium WebDriver
     
